@@ -1,48 +1,36 @@
 package com.example.hacathon.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.*;
-import com.example.hacathon.model.Customers;
+
 import com.example.hacathon.model.Orders;
-import com.example.hacathon.model.Products;
-import com.example.hacathon.service.CustomersService;
- import com.example.hacathon.service.OrdersService;
-import com.example.hacathon.service.ProductsService;
+import com.example.hacathon.service.OrdersService;
 
 @RestController
- @RequestMapping("/fun")
+ @RequestMapping("/orders")
 public class OrdersController {
     @Autowired OrdersService ordersService;
-    @Autowired CustomersService customersService;
-    @Autowired ProductsService productsService;
    
-    @GetMapping("/customers")
-    public java.util.List<Customers> getAllCustomers() {
-        return customersService.getAllCustomers();
-    }
+   
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/good")
     public double totalOrderSales(){
         return ordersService.calculateTotalSales();
     }
-     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/orders")
-    public java.util.List<Orders> getAllOrders(){
+    @GetMapping
+    public List<Orders> getAllOrders(){
         return ordersService.getAllMethods();
     }
+    
+   
 
-    @GetMapping("/products")
-    public List<Products> getAllProducts()
-    {
-        return productsService.getAllProducts();
-    }
-    // @PostMapping
-    //  public Customers addCustomer(@RequestBody Customers customer) {
-    //     return customersService.saveCustomer(customer);
-    // }
+  
+   
 
     
 }
